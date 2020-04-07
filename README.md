@@ -52,6 +52,7 @@ You can now view the application at ```localhost:1011``` if hosted locally, or e
 
 ## Acknowledgements
 Project collaborators: Fernando Rivera and Tracy Tuplin @ [ITU](www.itu.int)
+
 Website and Logo design: Swarna Hebbar (incl. website)
 
   
