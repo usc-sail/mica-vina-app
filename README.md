@@ -51,8 +51,8 @@ You can now view the application at ```localhost:1011``` if hosted locally, or e
 1. Instructions for dockerized application for simplified deployment.
 
 ## Acknowledgements
-Project collaborators: Fernando Rivera and Tracy Tuplin @ [ITU](www.itu.int)
+Project collaborators: *Fernando Rivera* and *Tracy Tuplin* from [International Telecommunication Union](www.itu.int)
 
-Website and Logo design: Swarna Hebbar (incl. website)
+Website and Logo design: *Swarna Hebbar* (incl. website)
 
   
