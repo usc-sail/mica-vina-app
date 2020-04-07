@@ -42,10 +42,10 @@ split_wav_scp=""
 for n in $(seq $nj); do
     split_wav_scp="$split_wav_scp $log_dir/wav.scp.$n"
 done
-./split_scp.pl $scp $split_wav_scp || exit 1;
+utils/split_scp.pl $scp $split_wav_scp || exit 1;
 
 ## Extract fbank features using run.pl parallelization
-./run.pl JOB=1:$nj $log_dir/make_fbank_feats.JOB.log \
+utils/run.pl JOB=1:$nj $log_dir/make_fbank_feats.JOB.log \
     compute-fbank-feats --verbose=2 --num-mel-bins=64 scp:$log_dir/wav.scp.JOB ark,p:- \| \
     copy-feats --compress=true ark,p:- \
         ark,scp,p:$fbank_dir/raw_fbank_feats.JOB.ark,$fbank_dir/raw_fbank_feats.JOB.scp \
