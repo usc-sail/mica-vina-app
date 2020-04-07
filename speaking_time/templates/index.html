@@ -1,0 +1,142 @@
+{%- extends "bootstrap/base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% import "bootstrap/utils.html" as utils %}
+
+{% block head %}
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+  <title>Speaking Time Estimation Tool</title>
+  
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400" rel="stylesheet">
+  <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet'>
+  {{super()}}
+{% endblock %}
+
+{% block styles %}
+  {{super()}}
+  <link href="{{ url_for('static', filename='css/main.css') }}" rel="stylesheet">
+{% endblock %}
+
+<html> 
+{% block content %}
+    <div class="FullBody">
+    <div class="d-md-flex flex-md-row logo-panel">
+         <figure class=" text-center ml-5 mr-5 ">
+            <img class="vina-logo" src="/static/images/vina1.png" alt="">
+         </figure>
+         <div class="d-flex flex-column justify-content-center flex-grow-1">
+             <p class=" text-center vina-header"> Speaking Time Estimation Tool </p> 
+             <p class=" text-center vina-desc"> Estimate the percentage of female speaking time in your events </p>
+         </div>
+    </div>
+
+    <div class="inst-panel d-md-flex flex-md-row justify-content-around">
+        <div class="d-flex flex-column text-center inst-panel justify-content-center pt-2 pb-3"> 
+            <div class="inst-id"> 1. </div>
+            <div class="inst-header"> Click "Browse" to upload audio/video files </div>
+            <div class="inst-desc"> (.mp4/.mkv/.wav format) </div>
+        </div>
+        <div class=" d-flex flex-column text-center inst-panel justify-content-center pt-3 pb-3">
+            <div class="inst-id"> 2. </div>
+            <div class="inst-header"> Click "Start Processing" </div>
+            <div class="inst-desc"> Track real-time progress of audio processing </div>
+        </div>
+        <div class=" d-flex flex-column text-center inst-panel justify-content-center pt-3 pb-3">
+            <div class="inst-id"> 3. </div>
+            <div class="inst-header"> Get results on your email </div>
+            <div class="inst-desc"> Enter the email address you want the results to get sent to, below </div>
+        </div>
+    </div>
+            
+<!--         <img class="vina-inst" src="/static/images/vina_instructions.png" alt="">-->
+        
+	    <form method=post enctype=multipart/form-data>
+                 {{ form.csrf }}
+
+            <div class="col-sm-4 offset-sm-1 mt-5 mb-4">
+                <label for="email" class="email">Email address (detailed results will be sent here)</label>
+                <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com">
+            </div>
+        
+        <div class="col-sm-10 offset-sm-1 table-wrapper panel-body text-dark"> 
+
+            <table class="table table-bordered table-responsive-lg btn-table text-dark" id="taskTable" style:"width:80%;">
+                <thead class="table-header">
+                    <tr>
+                        <th style="width:2.5%"> S. No </th>
+                        <th style="width:22.5%"> File </th>
+                        <th style="width:15%"> Progress </th>
+                        <th style="width:10%"> Total Speech </th>
+                        <th style="width:10%"> % Female Speech </th>
+                    <tr>
+                </thead>
+                <tbody id="tasks">
+                    <td></td>
+                    <td>
+                        <div class="custom-file">
+                            <input type="file" accept=".mp4,.mkv" class="custom-file-input" id="inputfile" name="inputfile">
+                            <label class="custom-file-label" style="width:90%;" for="inputfile"></label>
+                        </div>
+                    </td>
+                    <td>
+                        <button class="btn btn-primary" type="button" id="submit" style="margin-top:0%;">Start Processing!</button>
+
+                        <div class="progress " id="progressBar" style="width:66%;margin-top:2%;">
+                            <div id="InitProgress" name="InitProgress"
+                                class="column-md-4 progress-bar progress-bar-success progress-bar-striped"
+                                    role="progressbar" aria-valuenow="0" aria-valuemin="0"
+                                    aria-valuemax="100" style="width: 0%">
+                            </div>
+                        </div>
+                    </td>
+                    <td></td>
+                    <td></td>
+                </tbody>
+            </table>
+
+        </div>
+
+		</form>
+    <div class="d-flex fixed-bottom footer">
+        <div class="row">
+            <div class="col-6 col-md-7">
+                    <div class="row">
+                    <p class="offset-md-2 offset-2 mt-5 footer-header"> COLLABORATORS ON VANI ANALYTICS </p>
+                    </div>
+                    <div class="row text-center">
+                        <figure class="collabs">
+                            <img class="col-3 offset-md-2 collab-logos" src="/static/images/ece_dept_logo_3.png" alt="">
+                            <img class="col-3 collab-logos" src="/static/images/sail.svg" alt=""> 
+                            <img class="col-3 collab-logos" src="/static/images/itu_logo.png" alt="">
+                        </figure>
+                    </div>
+             </div>
+
+             <div class="col-4 col-md-4 disclaimers text-justify">
+                        <p class="mt-5 footer-header"> CONTENT DISCLAIMER: </p>
+                    	<ul>
+                        	<li> This application has been developed for research purposes only and holds further scope for improvement. </li> 
+                        	<li> We recognize that gender is a social construct and is non-binary. This application identifies two presentations of gender based on the development data. </li>
+                        	<li> We acknowledge that automatically identifying gender is a culturally sensitive topic. Our research and development is carried out respectfully and in the ultimate interest of promoting diversity and inclusion of persons in meetings.  </li> 
+                    	</ul> 
+             </div>
+        </div>
+    </div>    
+    </div>    
+
+ {% endblock %}
+
+{% block scripts %}
+  {{super()}}
+  <script type=text/javascript>
+    $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+  </script>
+
+   <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+ {% endblock %}

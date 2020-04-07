@@ -1,0 +1,86 @@
+{%- extends "bootstrap/base.html" %}
+{% import "bootstrap/utils.html" as utils %}
+
+{% block head %}
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+  <title>Speaking Time Estimation Tool</title>
+  
+  <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/jumbotron/">
+
+  <link href="jumbotron.css" rel="stylesheet">
+  <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet'>
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+  {{super()}}
+{% endblock %}
+
+{% block styles %}
+  {{super()}}
+  <link href="{{ url_for('static', filename='css/login.css') }}" rel="stylesheet">
+{% endblock %}
+
+<html> 
+	<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Signin Template for Bootstrap</title>
+  </head>
+
+
+{% block content %}
+    <div class="container-fluid">
+     <div class="row login-page">
+          <div class="col-5 col-md-4 logo-panel">
+            <div class="row">
+                  <img class="img-fluid col-md-8 offset-md-2 col-12 mb-4 vina-logo" src="/static/images/vina2.png" alt="">
+            </div>
+              <p class="h4 mb-5 text-center text-white vina-header"> Speaking Time Estimation Tool </p>
+              <p class="text-center text-white col-12 col-md-6 offset-md-3"> Estimate the percentage of female speaking time in your events </p>
+          </div>
+     
+          <div class="col-7 col-md-8 login-panel">
+              <body class="text-center">
+                {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    <div class="notification is-danger">
+                        {{ messages[0] }} To create an account, <a href="{{ url_for('auth.signup') }}">signup here</a>.
+                    </div>
+                {% endif %}
+                {% endwith %}
+                <form class="form-signin" method="POST" action="/login">
+                <div class="row">
+                  <p class="col-md-4 offset-md-4 col-10 offset-1 h3 mb-5 font-weight-normal login-text">Login to Vina Analytics</p>
+                </div>
+                <div class="row">
+                      <label for="inputEmail" class="sr-only">Email address</label>
+                      <input type="email" name="email" class="mt-4 email col-md-4 offset-md-4 col-6 offset-3 text-center" placeholder="Email address" required autofocus>
+                </div>
+                <div class="row">
+                      <label for="inputPassword" class="sr-only">Password</label>
+                      <input type="password" name="password" class="mt-4 passwd col-md-4 offset-md-4 col-6 offset-3 text-center" placeholder="Password" required>
+                </div>   
+                  <div class="checkbox mt-4">
+                    <label>
+                      <input type="checkbox" value="remember-me"> Remember me
+                    </label>
+                  </div>
+                  <div class="row">
+                  <button class="mt-4 col-md-4 offset-md-4 col-6 offset-3 btn btn-lg btn-primary">Login</button>
+                  </div>
+                  <p class="mt-4 mb-3 text-muted">&copy; 2019-2020</p>
+                </form>
+              </body>
+             </div>
+           </div>
+     </div>
+    </div> 
+{% endblock %}

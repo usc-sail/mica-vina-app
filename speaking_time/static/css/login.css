@@ -1,0 +1,44 @@
+.login-page{
+	height: 900px;
+	max-height: 900px;
+}
+
+.logo-panel{
+  /*   width: 37%;
+     height: 100%;*/
+     background-color: #5f5e5e;
+}
+
+.vina-logo{
+    margin-top: 20%;
+/*    width: 65%; */
+    height: 800px;
+	width: 600px;
+	max-height: 30vh;
+	max-width: 40vw;
+}
+
+.vina-header{
+    font-family: Raleway;
+    font-weight: bold;
+}
+
+.login-panel{
+	background-color: #fafafa;
+}
+.login-text{
+	margin-top: 15%;
+	font-family: Raleway;
+	color: #585858;	
+}
+
+.email{
+/*	width: 33%;*/
+	height: 42px;
+}
+
+.passwd{
+/*	width: 33%;*/
+	height: 42px;
+}
+
